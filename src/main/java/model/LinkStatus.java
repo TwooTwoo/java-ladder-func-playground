@@ -4,7 +4,7 @@ public enum LinkStatus {
     UNDEFINED, ABSENT, PRESENT;
 
     public boolean isPresent() {
-        return this == present;
+        return this == PRESENT;
     }
 
 }
