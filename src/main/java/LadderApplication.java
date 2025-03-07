@@ -2,7 +2,7 @@ import controller.LadderController;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        LadderController ladderController = new LadderController();
+        LadderController ladderController = LadderController.getInstance();
 
         ladderController.run();
     }

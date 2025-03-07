@@ -1,31 +1,47 @@
 package view;
 
-import java.util.List;
+import dto.LineDto;
 
 public class LadderOutputView {
 
-    private static String DASH_COUPLER = "-----";
-    private static String BLANK_COUPLER = "     ";
+    private static final String INDENTATION = "    ";
+    private static final String DASH_COUPLER = "-----";
+    private static final String BLANK_COUPLER = "     ";
+    private static final String PILLAR = "|";
 
-    public void printLine(List<Boolean> line) {
-        StringBuilder output = new StringBuilder();
-        output.append("|");
+    private LadderOutputView() {
+    }
 
-        for(boolean isConnected : line) {
-            output.append(getJoiner(isConnected));
-            output.append("|");
+    private static final LadderOutputView ladderOutputView = new LadderOutputView();
+
+    public static LadderOutputView getInstance() {
+        return ladderOutputView;
+    }
+
+    public void printResultHeader() {
+        System.out.println("실행결과");
+        System.out.println();
+    }
+
+    public void printLine(LineDto lineDto) {
+        StringBuilder output = new StringBuilder()
+                .append(INDENTATION)
+                .append(PILLAR);
+
+        for (boolean isExist : lineDto.getLinkExistCollection()) {
+            String coupler = getCoupler(isExist);
+            output.append(coupler)
+                    .append(PILLAR);
         }
 
         System.out.println(output);
     }
 
-    private String getJoiner(boolean isConnected) {
-        if(isConnected) {
+    private String getCoupler(boolean isLinkExist) {
+        if (isLinkExist) {
             return DASH_COUPLER;
         }
         return BLANK_COUPLER;
     }
-
-
 
 }
